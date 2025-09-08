@@ -37,7 +37,8 @@
         for (int i = 0; i < (int)tokens.size(); i++)
         {
             std::regex pattern(std::string("\\b") + tokens[i] + "\\b");
-            expression = std::regex_replace(expression, pattern, std::string("$$") + std::to_string(i));
+            if (!type) expression = std::regex_replace(expression, pattern, std::string("$$") + std::to_string(i));
+            else expression = std::regex_replace(expression, pattern, std::string("(") + std::string("$$") + std::to_string(i) + ")");
         }
 
         macro_identifiers[type][identifier_m] = {tokens.size(), expression};
