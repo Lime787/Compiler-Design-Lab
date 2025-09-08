@@ -15,4 +15,3 @@ class test {
 
 }
 
-// Failed to parse macrojava code.

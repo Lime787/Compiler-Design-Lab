@@ -41,7 +41,7 @@
 "("                     {return '(';}
 ")"                     {return ')';}
 
-")"[ ]*"->"             {return ARROWOP;}
+"->"                    {return ARROWOP;}
 "&&"                    {return AND;}
 "||"                    {return OR;}
 "<="                    {return LTEQ;}

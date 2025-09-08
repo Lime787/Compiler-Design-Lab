@@ -83,7 +83,8 @@ extern int yydebug;
     IMPORT_FUNCTION = 284,         /* IMPORT_FUNCTION  */
     IMPORT = 285,                  /* IMPORT  */
     IDENTIFIER = 286,              /* IDENTIFIER  */
-    INT_LITERAL = 287              /* INT_LITERAL  */
+    INT_LITERAL = 287,             /* INT_LITERAL  */
+    close_paren = 288              /* close_paren  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -92,11 +93,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 81 "P1.y"
+#line 82 "P1.y"
 
     char* val;
 
-#line 100 "P1.tab.h"
+#line 101 "P1.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

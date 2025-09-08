@@ -11,9 +11,10 @@
     int yylex(void);
     void yyerror(char*);
 
-    std::unordered_map<std::string, std::pair<int, std::string>> macro_identifiers;
+    std::vector<std::unordered_map<std::string, std::pair<int, std::string>>> macro_identifiers(2);
     int count_tabs = 0;
     const std::string tab = "    ";
+    std::string output;
 
     std::vector<std::string> split_string(std::string& str, char delimiter)
     {
@@ -29,7 +30,7 @@
         return tokens;
     }
 
-    void add_macro(std::string identifier_m, std::string identifier_list_m, std::string expression)
+    void add_macro(int type, std::string identifier_m, std::string identifier_list_m, std::string expression)
     {
         auto tokens = split_string(identifier_list_m, ',');
         
@@ -39,18 +40,18 @@
             expression = std::regex_replace(expression, pattern, std::string("$$") + std::to_string(i));
         }
 
-        macro_identifiers[identifier_m] = {tokens.size(), expression};
+        macro_identifiers[type][identifier_m] = {tokens.size(), expression};
     }
 
-    std::string apply_macro(std::string identifier_m, std::string expression_list_m)
+    std::string apply_macro(int type, std::string identifier_m, std::string expression_list_m)
     {
         auto tokens = split_string(expression_list_m, ',');
-        if ((macro_identifiers.find(identifier_m) == macro_identifiers.end()) || ((int)tokens.size() != macro_identifiers[identifier_m].first))
+        if ((macro_identifiers[type].find(identifier_m) == macro_identifiers[type].end()) || ((int)tokens.size() != macro_identifiers[type][identifier_m].first))
         {
             yyerror("error");
         }
 
-        std::string expression = macro_identifiers[identifier_m].second;
+        std::string expression = macro_identifiers[type][identifier_m].second;
         for (int i = 0; i < (int)tokens.size(); i++)
         {
             std::regex pattern(std::string("\\$") + std::to_string(i) + "\\b");
@@ -101,11 +102,13 @@
 %left '*' '/'
 %nonassoc IF
 %nonassoc ELSE
+%nonassoc close_paren
+%nonassoc ')'
 
 %%
 
 goal:
-    import_function_ macro_definition_ main_class type_declaration_ {std::cout << std::string(join_strings("", $1, $3, $4));}
+    import_function_ macro_definition_ main_class type_declaration_ {output = std::string(join_strings("", $1, $3, $4));}
     ;
 
 import_function_:
@@ -251,7 +254,7 @@ print_statement:
     ;
 
 macro_statement:
-    IDENTIFIER '(' expression_list_ ')' ';' {$$ = join_strings("", apply_macro($1, $3));}
+    IDENTIFIER '(' expression_list_ ')' ';' {$$ = join_strings("", apply_macro(0, $1, $3));}
     ;
 
 expression_list_:
@@ -277,7 +280,7 @@ expression :
     ;
 
 lambda_expression:
-    '(' IDENTIFIER ARROWOP expression  {$$ = join_strings("", "(", $2, ") -> ", $4);}
+    '(' IDENTIFIER ')' ARROWOP expression  {$$ = join_strings("", "(", $2, ") -> ", $5);}
     ;
 
 and_expression:
@@ -325,7 +328,7 @@ message_send:
     ;
 
 macro_expression:
-    IDENTIFIER '('expression_list_ ')' {$$ = join_strings("", apply_macro($1, $3));}
+    IDENTIFIER '('expression_list_ ')' {$$ = join_strings("", apply_macro(1, $1, $3));}
     ;
 
 expression_list:
@@ -345,7 +348,7 @@ primary_expression:
     INT_LITERAL {$$ = $1;}
     | TRUE_ {$$ = "true";}
     | FALSE_ {$$ = "false";}
-    | IDENTIFIER
+    | IDENTIFIER %prec close_paren
     | THIS {$$ = "this";}
     | uminus_expression {$$ = $1;}
     | array_alloc_expression {$$ = $1;}
@@ -380,11 +383,11 @@ macro_definition:
     ;
 
 macro_def_statement:
-    DEFINE IDENTIFIER '(' identifier_list_ ')' block {add_macro($2, $4, $6);}
+    DEFINE IDENTIFIER '(' identifier_list_ ')' block {add_macro(0, $2, $4, $6);}
     ;
 
 macro_def_expression:
-    DEFINE IDENTIFIER '(' identifier_list_ ')' bracket_expression  {add_macro($2, $4, $6);}
+    DEFINE IDENTIFIER '(' identifier_list_ ')' bracket_expression  {add_macro(1, $2, $4, $6);}
     ;
 
 identifier_list_:
@@ -415,5 +418,7 @@ void yyerror(char* s)
 
 int main(void)
 {
-    return yyparse();
+    yyparse();
+    std::cout << output;
+    return 0;
 }
