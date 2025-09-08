@@ -76,6 +76,14 @@
         return res;
     }
 
+    char* modify_lambda(std::string identifier_m, std::string expression_m)
+    {
+        std::regex pattern(identifier_m);
+        expression_m = std::regex_replace(expression_m, pattern, identifier_m + "_unexpected");
+        // std::cout << expression_m << '\n';
+        return strdup(expression_m.c_str());
+    }
+
 %}
 
 %union
@@ -280,7 +288,7 @@ expression :
     ;
 
 lambda_expression:
-    '(' IDENTIFIER ')' ARROWOP expression  {$$ = join_strings("", "(", $2, ") -> ", $5);}
+    '(' IDENTIFIER ')' ARROWOP expression  {$$ = join_strings("", "((", $2, "_unexpected",") -> ", modify_lambda($2, $5), ")");}
     ;
 
 and_expression:

@@ -146,8 +146,16 @@
         return res;
     }
 
+    char* modify_lambda(std::string identifier_m, std::string expression_m)
+    {
+        std::regex pattern(identifier_m);
+        expression_m = std::regex_replace(expression_m, pattern, identifier_m + "_unexpected");
+        // std::cout << expression_m << '\n';
+        return strdup(expression_m.c_str());
+    }
 
-#line 151 "P1.tab.c"
+
+#line 159 "P1.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -679,18 +687,18 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   111,   111,   115,   116,   120,   121,   125,   126,   130,
-     130,   130,   138,   139,   143,   143,   151,   152,   156,   157,
-     161,   161,   169,   173,   173,   181,   182,   186,   187,   191,
-     195,   196,   200,   204,   208,   209,   210,   211,   212,   216,
-     217,   218,   219,   220,   221,   222,   226,   226,   230,   234,
-     238,   242,   249,   253,   257,   261,   262,   266,   267,   268,
-     269,   270,   271,   272,   273,   274,   275,   276,   277,   278,
-     279,   283,   287,   291,   295,   299,   303,   307,   311,   315,
-     319,   323,   327,   331,   335,   339,   340,   344,   348,   349,
-     350,   351,   352,   353,   354,   355,   356,   357,   361,   365,
-     369,   373,   377,   381,   382,   386,   390,   394,   395,   399,
-     403,   404,   408
+       0,   119,   119,   123,   124,   128,   129,   133,   134,   138,
+     138,   138,   146,   147,   151,   151,   159,   160,   164,   165,
+     169,   169,   177,   181,   181,   189,   190,   194,   195,   199,
+     203,   204,   208,   212,   216,   217,   218,   219,   220,   224,
+     225,   226,   227,   228,   229,   230,   234,   234,   238,   242,
+     246,   250,   257,   261,   265,   269,   270,   274,   275,   276,
+     277,   278,   279,   280,   281,   282,   283,   284,   285,   286,
+     287,   291,   295,   299,   303,   307,   311,   315,   319,   323,
+     327,   331,   335,   339,   343,   347,   348,   352,   356,   357,
+     358,   359,   360,   361,   362,   363,   364,   365,   369,   373,
+     377,   381,   385,   389,   390,   394,   398,   402,   403,   407,
+     411,   412,   416
 };
 #endif
 
@@ -1407,659 +1415,659 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* goal: import_function_ macro_definition_ main_class type_declaration_  */
-#line 111 "P1.y"
+#line 119 "P1.y"
                                                                     {output = std::string(join_strings("", (yyvsp[-3].val), (yyvsp[-1].val), (yyvsp[0].val)));}
-#line 1413 "P1.tab.c"
+#line 1421 "P1.tab.c"
     break;
 
   case 3: /* import_function_: IMPORT IMPORT_FUNCTION ';'  */
-#line 115 "P1.y"
+#line 123 "P1.y"
                                {(yyval.val) = join_strings("", "import java.util.function.Function;\n\n");}
-#line 1419 "P1.tab.c"
+#line 1427 "P1.tab.c"
     break;
 
   case 4: /* import_function_: %empty  */
-#line 116 "P1.y"
+#line 124 "P1.y"
       {(yyval.val) = "";}
-#line 1425 "P1.tab.c"
+#line 1433 "P1.tab.c"
     break;
 
   case 7: /* type_declaration_: type_declaration_ type_declaration  */
-#line 125 "P1.y"
+#line 133 "P1.y"
                                        {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1431 "P1.tab.c"
+#line 1439 "P1.tab.c"
     break;
 
   case 8: /* type_declaration_: %empty  */
-#line 126 "P1.y"
+#line 134 "P1.y"
       {(yyval.val) = "";}
-#line 1437 "P1.tab.c"
+#line 1445 "P1.tab.c"
     break;
 
   case 9: /* $@1: %empty  */
-#line 130 "P1.y"
+#line 138 "P1.y"
                          {count_tabs++;}
-#line 1443 "P1.tab.c"
+#line 1451 "P1.tab.c"
     break;
 
   case 10: /* $@2: %empty  */
-#line 130 "P1.y"
+#line 138 "P1.y"
                                                                                                        {count_tabs++;}
-#line 1449 "P1.tab.c"
+#line 1457 "P1.tab.c"
     break;
 
   case 11: /* main_class: CLASS IDENTIFIER '{' $@1 PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENTIFIER ')' '{' $@2 print_statement '}' '}'  */
-#line 131 "P1.y"
+#line 139 "P1.y"
         {
             (yyval.val) = join_strings("", required_tabs(count_tabs - 2), "class ", (yyvsp[-17].val), " {\n", required_tabs(count_tabs - 1), "public static void main (String[] ", (yyvsp[-6].val), ") {\n", (yyvsp[-2].val), required_tabs(count_tabs - 1), "}\n", required_tabs(count_tabs - 2), "}\n\n"); 
             count_tabs -= 2;
         }
-#line 1458 "P1.tab.c"
+#line 1466 "P1.tab.c"
     break;
 
   case 12: /* type_declaration: class_declaration  */
-#line 138 "P1.y"
+#line 146 "P1.y"
                       {(yyval.val) = (yyvsp[0].val);}
-#line 1464 "P1.tab.c"
+#line 1472 "P1.tab.c"
     break;
 
   case 13: /* type_declaration: class_extends_declaration  */
-#line 139 "P1.y"
+#line 147 "P1.y"
                                 {(yyval.val) = (yyvsp[0].val);}
-#line 1470 "P1.tab.c"
+#line 1478 "P1.tab.c"
     break;
 
   case 14: /* $@3: %empty  */
-#line 143 "P1.y"
+#line 151 "P1.y"
                          {count_tabs++;}
-#line 1476 "P1.tab.c"
+#line 1484 "P1.tab.c"
     break;
 
   case 15: /* class_declaration: CLASS IDENTIFIER '{' $@3 var_declaration_ method_declaration_ '}'  */
-#line 144 "P1.y"
+#line 152 "P1.y"
         {
             (yyval.val) = join_strings("", required_tabs(count_tabs - 1), "class ", (yyvsp[-5].val), " {\n", (yyvsp[-2].val), (yyvsp[-1].val), required_tabs(count_tabs - 1), "}\n\n"); 
             count_tabs--;
         }
-#line 1485 "P1.tab.c"
+#line 1493 "P1.tab.c"
     break;
 
   case 16: /* var_declaration_: var_declaration_ var_declaration  */
-#line 151 "P1.y"
+#line 159 "P1.y"
                                       {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1491 "P1.tab.c"
+#line 1499 "P1.tab.c"
     break;
 
   case 17: /* var_declaration_: %empty  */
-#line 152 "P1.y"
+#line 160 "P1.y"
       {(yyval.val) = "";}
-#line 1497 "P1.tab.c"
+#line 1505 "P1.tab.c"
     break;
 
   case 18: /* method_declaration_: method_declaration_ method_declaration  */
-#line 156 "P1.y"
+#line 164 "P1.y"
                                            {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1503 "P1.tab.c"
+#line 1511 "P1.tab.c"
     break;
 
   case 19: /* method_declaration_: %empty  */
-#line 157 "P1.y"
+#line 165 "P1.y"
       {(yyval.val) = "";}
-#line 1509 "P1.tab.c"
+#line 1517 "P1.tab.c"
     break;
 
   case 20: /* $@4: %empty  */
-#line 161 "P1.y"
+#line 169 "P1.y"
                                             {count_tabs++;}
-#line 1515 "P1.tab.c"
+#line 1523 "P1.tab.c"
     break;
 
   case 21: /* class_extends_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER '{' $@4 var_declaration_ method_declaration_ '}'  */
-#line 162 "P1.y"
+#line 170 "P1.y"
         {
             (yyval.val) = join_strings("", required_tabs(count_tabs - 1), "class ", (yyvsp[-7].val), " extends ", (yyvsp[-5].val), " {\n", (yyvsp[-2].val), (yyvsp[-1].val), required_tabs(count_tabs - 1), "}\n\n"); 
             count_tabs--;
         }
-#line 1524 "P1.tab.c"
+#line 1532 "P1.tab.c"
     break;
 
   case 22: /* var_declaration: type IDENTIFIER ';'  */
-#line 169 "P1.y"
+#line 177 "P1.y"
                         {(yyval.val) = join_strings("", required_tabs(count_tabs), (yyvsp[-2].val), " ", (yyvsp[-1].val), ";\n");}
-#line 1530 "P1.tab.c"
+#line 1538 "P1.tab.c"
     break;
 
   case 23: /* $@5: %empty  */
-#line 173 "P1.y"
+#line 181 "P1.y"
                                                               {count_tabs++;}
-#line 1536 "P1.tab.c"
+#line 1544 "P1.tab.c"
     break;
 
   case 24: /* method_declaration: PUBLIC type IDENTIFIER '(' formal_parameter_list_ ')' '{' $@5 var_declaration_ statement_ RETURN expression ';' '}'  */
-#line 174 "P1.y"
+#line 182 "P1.y"
         {
             (yyval.val) = join_strings("", required_tabs(count_tabs - 1), "public ", (yyvsp[-12].val), " ", (yyvsp[-11].val), "(", (yyvsp[-9].val), ")", " {\n", (yyvsp[-5].val), (yyvsp[-4].val), required_tabs(count_tabs), "return ", (yyvsp[-2].val), ";\n", required_tabs(count_tabs - 1), "}\n\n"); 
             count_tabs--;
         }
-#line 1545 "P1.tab.c"
+#line 1553 "P1.tab.c"
     break;
 
   case 25: /* formal_parameter_list_: formal_parameter_list  */
-#line 181 "P1.y"
+#line 189 "P1.y"
                           {(yyval.val) = (yyvsp[0].val);}
-#line 1551 "P1.tab.c"
+#line 1559 "P1.tab.c"
     break;
 
   case 26: /* formal_parameter_list_: %empty  */
-#line 182 "P1.y"
+#line 190 "P1.y"
       {(yyval.val) = "";}
-#line 1557 "P1.tab.c"
+#line 1565 "P1.tab.c"
     break;
 
   case 27: /* statement_: statement statement_  */
-#line 186 "P1.y"
+#line 194 "P1.y"
                          {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1563 "P1.tab.c"
+#line 1571 "P1.tab.c"
     break;
 
   case 28: /* statement_: %empty  */
-#line 187 "P1.y"
+#line 195 "P1.y"
       {(yyval.val) = "";}
-#line 1569 "P1.tab.c"
+#line 1577 "P1.tab.c"
     break;
 
   case 29: /* formal_parameter_list: formal_parameter formal_parameter_rest_  */
-#line 191 "P1.y"
+#line 199 "P1.y"
                                             {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1575 "P1.tab.c"
+#line 1583 "P1.tab.c"
     break;
 
   case 30: /* formal_parameter_rest_: formal_parameter_rest_ formal_parameter_rest  */
-#line 195 "P1.y"
+#line 203 "P1.y"
                                                  {(yyval.val) = join_strings(", ", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1581 "P1.tab.c"
+#line 1589 "P1.tab.c"
     break;
 
   case 31: /* formal_parameter_rest_: %empty  */
-#line 196 "P1.y"
+#line 204 "P1.y"
       {(yyval.val) = "";}
-#line 1587 "P1.tab.c"
+#line 1595 "P1.tab.c"
     break;
 
   case 32: /* formal_parameter: type IDENTIFIER  */
-#line 200 "P1.y"
+#line 208 "P1.y"
                     {(yyval.val) = join_strings(" ", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1593 "P1.tab.c"
+#line 1601 "P1.tab.c"
     break;
 
   case 33: /* formal_parameter_rest: ',' formal_parameter  */
-#line 204 "P1.y"
+#line 212 "P1.y"
                          {(yyval.val) = (yyvsp[0].val);}
-#line 1599 "P1.tab.c"
+#line 1607 "P1.tab.c"
     break;
 
   case 34: /* type: INT '[' ']'  */
-#line 208 "P1.y"
+#line 216 "P1.y"
                 {(yyval.val) = "int[]";}
-#line 1605 "P1.tab.c"
+#line 1613 "P1.tab.c"
     break;
 
   case 35: /* type: BOOL  */
-#line 209 "P1.y"
+#line 217 "P1.y"
            {(yyval.val) = "boolean";}
-#line 1611 "P1.tab.c"
+#line 1619 "P1.tab.c"
     break;
 
   case 36: /* type: INT  */
-#line 210 "P1.y"
+#line 218 "P1.y"
           {(yyval.val) = "int";}
-#line 1617 "P1.tab.c"
+#line 1625 "P1.tab.c"
     break;
 
   case 37: /* type: IDENTIFIER  */
-#line 211 "P1.y"
+#line 219 "P1.y"
                  {(yyval.val) = (yyvsp[0].val);}
-#line 1623 "P1.tab.c"
+#line 1631 "P1.tab.c"
     break;
 
   case 38: /* type: FUNCTION '<' IDENTIFIER ',' IDENTIFIER '>'  */
-#line 212 "P1.y"
+#line 220 "P1.y"
                                                  {(yyval.val) = join_strings("", "Function<", (yyvsp[-3].val), ",", (yyvsp[-1].val), ">");}
-#line 1629 "P1.tab.c"
+#line 1637 "P1.tab.c"
     break;
 
   case 39: /* statement: block  */
-#line 216 "P1.y"
+#line 224 "P1.y"
           {(yyval.val) = (yyvsp[0].val);}
-#line 1635 "P1.tab.c"
+#line 1643 "P1.tab.c"
     break;
 
   case 40: /* statement: assignment_statement  */
-#line 217 "P1.y"
+#line 225 "P1.y"
                            {(yyval.val) = (yyvsp[0].val);}
-#line 1641 "P1.tab.c"
+#line 1649 "P1.tab.c"
     break;
 
   case 41: /* statement: array_assignment_statement  */
-#line 218 "P1.y"
+#line 226 "P1.y"
                                  {(yyval.val) = (yyvsp[0].val);}
-#line 1647 "P1.tab.c"
+#line 1655 "P1.tab.c"
     break;
 
   case 42: /* statement: if_statement  */
-#line 219 "P1.y"
+#line 227 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 1653 "P1.tab.c"
+#line 1661 "P1.tab.c"
     break;
 
   case 43: /* statement: while_statement  */
-#line 220 "P1.y"
+#line 228 "P1.y"
                       {(yyval.val) = (yyvsp[0].val);}
-#line 1659 "P1.tab.c"
+#line 1667 "P1.tab.c"
     break;
 
   case 44: /* statement: print_statement  */
-#line 221 "P1.y"
+#line 229 "P1.y"
                       {(yyval.val) = (yyvsp[0].val);}
-#line 1665 "P1.tab.c"
+#line 1673 "P1.tab.c"
     break;
 
   case 45: /* statement: macro_statement  */
-#line 222 "P1.y"
+#line 230 "P1.y"
                       {(yyval.val) = (yyvsp[0].val);}
-#line 1671 "P1.tab.c"
+#line 1679 "P1.tab.c"
     break;
 
   case 46: /* $@6: %empty  */
-#line 226 "P1.y"
+#line 234 "P1.y"
         {count_tabs++;}
-#line 1677 "P1.tab.c"
+#line 1685 "P1.tab.c"
     break;
 
   case 47: /* block: '{' $@6 statement_ '}'  */
-#line 226 "P1.y"
+#line 234 "P1.y"
                                        {(yyval.val) = join_strings("", "{\n", (yyvsp[-1].val), required_tabs(count_tabs - 1), "}\n"); count_tabs--;}
-#line 1683 "P1.tab.c"
+#line 1691 "P1.tab.c"
     break;
 
   case 48: /* assignment_statement: IDENTIFIER '=' expression ';'  */
-#line 230 "P1.y"
+#line 238 "P1.y"
                                   {(yyval.val) = join_strings("", required_tabs(count_tabs), (yyvsp[-3].val), " = ", (yyvsp[-1].val), ";\n");}
-#line 1689 "P1.tab.c"
+#line 1697 "P1.tab.c"
     break;
 
   case 49: /* array_assignment_statement: IDENTIFIER '[' expression ']' '=' expression ';'  */
-#line 234 "P1.y"
+#line 242 "P1.y"
                                                      {(yyval.val) = join_strings("", required_tabs(count_tabs), (yyvsp[-6].val), "[", (yyvsp[-4].val), "] = ", (yyvsp[-1].val), ";\n");}
-#line 1695 "P1.tab.c"
-    break;
-
-  case 50: /* if_statement: IF '(' expression ')' statement  */
-#line 239 "P1.y"
-        {
-            (yyval.val) = join_strings("", required_tabs(count_tabs), "if (", (yyvsp[-2].val), ") ", (std::string((yyvsp[0].val))[0] != '{' ? "\n" : ""), (yyvsp[0].val), "\n");
-        }
 #line 1703 "P1.tab.c"
     break;
 
-  case 51: /* if_statement: IF '(' expression ')' statement ELSE statement  */
-#line 243 "P1.y"
+  case 50: /* if_statement: IF '(' expression ')' statement  */
+#line 247 "P1.y"
         {
-            (yyval.val) = join_strings("", required_tabs(count_tabs), "if (", (yyvsp[-4].val), ") ", (std::string((yyvsp[-2].val))[0] != '{' ? "\n" : ""), (yyvsp[-2].val), required_tabs(count_tabs), "else ", (std::string((yyvsp[0].val))[0] != '{' ? "\n" : ""), (yyvsp[0].val), "\n");
+            (yyval.val) = join_strings("", required_tabs(count_tabs), "if (", (yyvsp[-2].val), ") ", (std::string((yyvsp[0].val))[0] != '{' ? "\n" : ""), (yyvsp[0].val), "\n");
         }
 #line 1711 "P1.tab.c"
     break;
 
+  case 51: /* if_statement: IF '(' expression ')' statement ELSE statement  */
+#line 251 "P1.y"
+        {
+            (yyval.val) = join_strings("", required_tabs(count_tabs), "if (", (yyvsp[-4].val), ") ", (std::string((yyvsp[-2].val))[0] != '{' ? "\n" : ""), (yyvsp[-2].val), required_tabs(count_tabs), "else ", (std::string((yyvsp[0].val))[0] != '{' ? "\n" : ""), (yyvsp[0].val), "\n");
+        }
+#line 1719 "P1.tab.c"
+    break;
+
   case 52: /* while_statement: WHILE '(' expression ')' statement  */
-#line 249 "P1.y"
+#line 257 "P1.y"
                                        {(yyval.val) = join_strings("", required_tabs(count_tabs), "while (", (yyvsp[-2].val), ") ", (yyvsp[0].val), "\n");}
-#line 1717 "P1.tab.c"
+#line 1725 "P1.tab.c"
     break;
 
   case 53: /* print_statement: PRINT_OUT '(' expression ')' ';'  */
-#line 253 "P1.y"
+#line 261 "P1.y"
                                      {(yyval.val) = join_strings("", required_tabs(count_tabs), "System.out.println(", (yyvsp[-2].val), ");\n");}
-#line 1723 "P1.tab.c"
+#line 1731 "P1.tab.c"
     break;
 
   case 54: /* macro_statement: IDENTIFIER '(' expression_list_ ')' ';'  */
-#line 257 "P1.y"
+#line 265 "P1.y"
                                             {(yyval.val) = join_strings("", apply_macro(0, (yyvsp[-4].val), (yyvsp[-2].val)));}
-#line 1729 "P1.tab.c"
+#line 1737 "P1.tab.c"
     break;
 
   case 55: /* expression_list_: expression_list  */
-#line 261 "P1.y"
+#line 269 "P1.y"
                     {(yyval.val) = (yyvsp[0].val);}
-#line 1735 "P1.tab.c"
+#line 1743 "P1.tab.c"
     break;
 
   case 56: /* expression_list_: %empty  */
-#line 262 "P1.y"
+#line 270 "P1.y"
         {(yyval.val) = "";}
-#line 1741 "P1.tab.c"
+#line 1749 "P1.tab.c"
     break;
 
   case 57: /* expression: or_expression  */
-#line 266 "P1.y"
+#line 274 "P1.y"
                   {(yyval.val) = (yyvsp[0].val);}
-#line 1747 "P1.tab.c"
+#line 1755 "P1.tab.c"
     break;
 
   case 58: /* expression: and_expression  */
-#line 267 "P1.y"
+#line 275 "P1.y"
                      {(yyval.val) = (yyvsp[0].val);}
-#line 1753 "P1.tab.c"
+#line 1761 "P1.tab.c"
     break;
 
   case 59: /* expression: compare_expression  */
-#line 268 "P1.y"
+#line 276 "P1.y"
                          {(yyval.val) = (yyvsp[0].val);}
-#line 1759 "P1.tab.c"
+#line 1767 "P1.tab.c"
     break;
 
   case 60: /* expression: neq_expression  */
-#line 269 "P1.y"
+#line 277 "P1.y"
                      {(yyval.val) = (yyvsp[0].val);}
-#line 1765 "P1.tab.c"
+#line 1773 "P1.tab.c"
     break;
 
   case 61: /* expression: add_expression  */
-#line 270 "P1.y"
+#line 278 "P1.y"
                      {(yyval.val) = (yyvsp[0].val);}
-#line 1771 "P1.tab.c"
+#line 1779 "P1.tab.c"
     break;
 
   case 62: /* expression: minus_expression  */
-#line 271 "P1.y"
+#line 279 "P1.y"
                        {(yyval.val) = (yyvsp[0].val);}
-#line 1777 "P1.tab.c"
+#line 1785 "P1.tab.c"
     break;
 
   case 63: /* expression: times_expression  */
-#line 272 "P1.y"
+#line 280 "P1.y"
                        {(yyval.val) = (yyvsp[0].val);}
-#line 1783 "P1.tab.c"
+#line 1791 "P1.tab.c"
     break;
 
   case 64: /* expression: div_expression  */
-#line 273 "P1.y"
+#line 281 "P1.y"
                      {(yyval.val) = (yyvsp[0].val);}
-#line 1789 "P1.tab.c"
+#line 1797 "P1.tab.c"
     break;
 
   case 65: /* expression: array_lookup  */
-#line 274 "P1.y"
+#line 282 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 1795 "P1.tab.c"
+#line 1803 "P1.tab.c"
     break;
 
   case 66: /* expression: array_length  */
-#line 275 "P1.y"
+#line 283 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 1801 "P1.tab.c"
+#line 1809 "P1.tab.c"
     break;
 
   case 67: /* expression: message_send  */
-#line 276 "P1.y"
+#line 284 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 1807 "P1.tab.c"
+#line 1815 "P1.tab.c"
     break;
 
   case 68: /* expression: macro_expression  */
-#line 277 "P1.y"
+#line 285 "P1.y"
                        {(yyval.val) = (yyvsp[0].val);}
-#line 1813 "P1.tab.c"
+#line 1821 "P1.tab.c"
     break;
 
   case 69: /* expression: lambda_expression  */
-#line 278 "P1.y"
+#line 286 "P1.y"
                         {(yyval.val) = (yyvsp[0].val);}
-#line 1819 "P1.tab.c"
+#line 1827 "P1.tab.c"
     break;
 
   case 70: /* expression: primary_expression  */
-#line 279 "P1.y"
+#line 287 "P1.y"
                                    {(yyval.val) = (yyvsp[0].val);}
-#line 1825 "P1.tab.c"
+#line 1833 "P1.tab.c"
     break;
 
   case 71: /* lambda_expression: '(' IDENTIFIER ')' ARROWOP expression  */
-#line 283 "P1.y"
-                                           {(yyval.val) = join_strings("", "(", (yyvsp[-3].val), ") -> ", (yyvsp[0].val));}
-#line 1831 "P1.tab.c"
+#line 291 "P1.y"
+                                           {(yyval.val) = join_strings("", "((", (yyvsp[-3].val), "_unexpected",") -> ", modify_lambda((yyvsp[-3].val), (yyvsp[0].val)), ")");}
+#line 1839 "P1.tab.c"
     break;
 
   case 72: /* and_expression: primary_expression AND primary_expression  */
-#line 287 "P1.y"
+#line 295 "P1.y"
                                                 {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "&&", (yyvsp[0].val));}
-#line 1837 "P1.tab.c"
+#line 1845 "P1.tab.c"
     break;
 
   case 73: /* or_expression: primary_expression OR primary_expression  */
-#line 291 "P1.y"
+#line 299 "P1.y"
                                              {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "||", (yyvsp[0].val));}
-#line 1843 "P1.tab.c"
+#line 1851 "P1.tab.c"
     break;
 
   case 74: /* compare_expression: primary_expression LTEQ primary_expression  */
-#line 295 "P1.y"
+#line 303 "P1.y"
                                                {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "<=", (yyvsp[0].val));}
-#line 1849 "P1.tab.c"
+#line 1857 "P1.tab.c"
     break;
 
   case 75: /* neq_expression: primary_expression NEQ primary_expression  */
-#line 299 "P1.y"
+#line 307 "P1.y"
                                               {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "!=", (yyvsp[0].val));}
-#line 1855 "P1.tab.c"
+#line 1863 "P1.tab.c"
     break;
 
   case 76: /* add_expression: primary_expression '+' primary_expression  */
-#line 303 "P1.y"
+#line 311 "P1.y"
                                               {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "+", (yyvsp[0].val));}
-#line 1861 "P1.tab.c"
+#line 1869 "P1.tab.c"
     break;
 
   case 77: /* minus_expression: primary_expression '-' primary_expression  */
-#line 307 "P1.y"
+#line 315 "P1.y"
                                               {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "-", (yyvsp[0].val));}
-#line 1867 "P1.tab.c"
+#line 1875 "P1.tab.c"
     break;
 
   case 78: /* times_expression: primary_expression '*' primary_expression  */
-#line 311 "P1.y"
+#line 319 "P1.y"
                                               {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "*", (yyvsp[0].val));}
-#line 1873 "P1.tab.c"
+#line 1881 "P1.tab.c"
     break;
 
   case 79: /* div_expression: primary_expression '/' primary_expression  */
-#line 315 "P1.y"
+#line 323 "P1.y"
                                               {(yyval.val) = join_strings(" ", (yyvsp[-2].val), "/", (yyvsp[0].val));}
-#line 1879 "P1.tab.c"
+#line 1887 "P1.tab.c"
     break;
 
   case 80: /* array_lookup: primary_expression '[' primary_expression ']'  */
-#line 319 "P1.y"
+#line 327 "P1.y"
                                                   {(yyval.val) = join_strings("", (yyvsp[-3].val), "[", (yyvsp[-1].val), "]");}
-#line 1885 "P1.tab.c"
+#line 1893 "P1.tab.c"
     break;
 
   case 81: /* array_length: primary_expression '.' LENGTH  */
-#line 323 "P1.y"
+#line 331 "P1.y"
                                   {(yyval.val) = join_strings("", (yyvsp[-2].val), ".length" );}
-#line 1891 "P1.tab.c"
+#line 1899 "P1.tab.c"
     break;
 
   case 82: /* message_send: primary_expression '.' IDENTIFIER '(' expression_list_ ')'  */
-#line 327 "P1.y"
+#line 335 "P1.y"
                                                                {(yyval.val) = join_strings("", (yyvsp[-5].val), ".", (yyvsp[-3].val), "(", (yyvsp[-1].val), ")");}
-#line 1897 "P1.tab.c"
+#line 1905 "P1.tab.c"
     break;
 
   case 83: /* macro_expression: IDENTIFIER '(' expression_list_ ')'  */
-#line 331 "P1.y"
+#line 339 "P1.y"
                                        {(yyval.val) = join_strings("", apply_macro(1, (yyvsp[-3].val), (yyvsp[-1].val)));}
-#line 1903 "P1.tab.c"
+#line 1911 "P1.tab.c"
     break;
 
   case 84: /* expression_list: expression expression_rest_  */
-#line 335 "P1.y"
+#line 343 "P1.y"
                                 {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1909 "P1.tab.c"
+#line 1917 "P1.tab.c"
     break;
 
   case 85: /* expression_rest_: expression_rest_ expression_rest  */
-#line 339 "P1.y"
+#line 347 "P1.y"
                                      {(yyval.val) = join_strings(",", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 1915 "P1.tab.c"
+#line 1923 "P1.tab.c"
     break;
 
   case 86: /* expression_rest_: %empty  */
-#line 340 "P1.y"
+#line 348 "P1.y"
       {(yyval.val) = "";}
-#line 1921 "P1.tab.c"
+#line 1929 "P1.tab.c"
     break;
 
   case 87: /* expression_rest: ',' expression  */
-#line 344 "P1.y"
+#line 352 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 1927 "P1.tab.c"
+#line 1935 "P1.tab.c"
     break;
 
   case 88: /* primary_expression: INT_LITERAL  */
-#line 348 "P1.y"
+#line 356 "P1.y"
                 {(yyval.val) = (yyvsp[0].val);}
-#line 1933 "P1.tab.c"
+#line 1941 "P1.tab.c"
     break;
 
   case 89: /* primary_expression: TRUE_  */
-#line 349 "P1.y"
+#line 357 "P1.y"
             {(yyval.val) = "true";}
-#line 1939 "P1.tab.c"
+#line 1947 "P1.tab.c"
     break;
 
   case 90: /* primary_expression: FALSE_  */
-#line 350 "P1.y"
+#line 358 "P1.y"
              {(yyval.val) = "false";}
-#line 1945 "P1.tab.c"
+#line 1953 "P1.tab.c"
     break;
 
   case 92: /* primary_expression: THIS  */
-#line 352 "P1.y"
+#line 360 "P1.y"
            {(yyval.val) = "this";}
-#line 1951 "P1.tab.c"
+#line 1959 "P1.tab.c"
     break;
 
   case 93: /* primary_expression: uminus_expression  */
-#line 353 "P1.y"
+#line 361 "P1.y"
                         {(yyval.val) = (yyvsp[0].val);}
-#line 1957 "P1.tab.c"
+#line 1965 "P1.tab.c"
     break;
 
   case 94: /* primary_expression: array_alloc_expression  */
-#line 354 "P1.y"
+#line 362 "P1.y"
                              {(yyval.val) = (yyvsp[0].val);}
-#line 1963 "P1.tab.c"
+#line 1971 "P1.tab.c"
     break;
 
   case 95: /* primary_expression: allocation_expression  */
-#line 355 "P1.y"
+#line 363 "P1.y"
                             {(yyval.val) = (yyvsp[0].val);}
-#line 1969 "P1.tab.c"
+#line 1977 "P1.tab.c"
     break;
 
   case 96: /* primary_expression: not_expression  */
-#line 356 "P1.y"
+#line 364 "P1.y"
                      {(yyval.val) = (yyvsp[0].val);}
-#line 1975 "P1.tab.c"
+#line 1983 "P1.tab.c"
     break;
 
   case 97: /* primary_expression: bracket_expression  */
-#line 357 "P1.y"
+#line 365 "P1.y"
                          {(yyval.val) = (yyvsp[0].val);}
-#line 1981 "P1.tab.c"
+#line 1989 "P1.tab.c"
     break;
 
   case 98: /* uminus_expression: '-' primary_expression  */
-#line 361 "P1.y"
+#line 369 "P1.y"
                            {(yyval.val) = join_strings("", "-", (yyvsp[0].val));}
-#line 1987 "P1.tab.c"
+#line 1995 "P1.tab.c"
     break;
 
   case 99: /* array_alloc_expression: NEW INT '[' expression ']'  */
-#line 365 "P1.y"
+#line 373 "P1.y"
                                {(yyval.val) = join_strings("", "new int[", (yyvsp[-1].val), "]");}
-#line 1993 "P1.tab.c"
+#line 2001 "P1.tab.c"
     break;
 
   case 100: /* allocation_expression: NEW IDENTIFIER '(' ')'  */
-#line 369 "P1.y"
+#line 377 "P1.y"
                            {(yyval.val) = join_strings("", "new ", (yyvsp[-2].val), "()");}
-#line 1999 "P1.tab.c"
+#line 2007 "P1.tab.c"
     break;
 
   case 101: /* not_expression: '!' expression  */
-#line 373 "P1.y"
+#line 381 "P1.y"
                    {(yyval.val) = join_strings("", "!", (yyvsp[0].val));}
-#line 2005 "P1.tab.c"
+#line 2013 "P1.tab.c"
     break;
 
   case 102: /* bracket_expression: '(' expression ')'  */
-#line 377 "P1.y"
+#line 385 "P1.y"
                        {(yyval.val) = join_strings("", "(", (yyvsp[-1].val), ")");}
-#line 2011 "P1.tab.c"
+#line 2019 "P1.tab.c"
     break;
 
   case 105: /* macro_def_statement: DEFINE IDENTIFIER '(' identifier_list_ ')' block  */
-#line 386 "P1.y"
+#line 394 "P1.y"
                                                      {add_macro(0, (yyvsp[-4].val), (yyvsp[-2].val), (yyvsp[0].val));}
-#line 2017 "P1.tab.c"
+#line 2025 "P1.tab.c"
     break;
 
   case 106: /* macro_def_expression: DEFINE IDENTIFIER '(' identifier_list_ ')' bracket_expression  */
-#line 390 "P1.y"
+#line 398 "P1.y"
                                                                    {add_macro(1, (yyvsp[-4].val), (yyvsp[-2].val), (yyvsp[0].val));}
-#line 2023 "P1.tab.c"
+#line 2031 "P1.tab.c"
     break;
 
   case 107: /* identifier_list_: identifier_list  */
-#line 394 "P1.y"
+#line 402 "P1.y"
                     {(yyval.val) = (yyvsp[0].val);}
-#line 2029 "P1.tab.c"
+#line 2037 "P1.tab.c"
     break;
 
   case 108: /* identifier_list_: %empty  */
-#line 395 "P1.y"
+#line 403 "P1.y"
       {(yyval.val) = "";}
-#line 2035 "P1.tab.c"
+#line 2043 "P1.tab.c"
     break;
 
   case 109: /* identifier_list: IDENTIFIER identifier_rest_  */
-#line 399 "P1.y"
+#line 407 "P1.y"
                                 {(yyval.val) = join_strings("", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 2041 "P1.tab.c"
+#line 2049 "P1.tab.c"
     break;
 
   case 110: /* identifier_rest_: identifier_rest_ identifier_rest  */
-#line 403 "P1.y"
+#line 411 "P1.y"
                                      {(yyval.val) = join_strings(",", (yyvsp[-1].val), (yyvsp[0].val));}
-#line 2047 "P1.tab.c"
+#line 2055 "P1.tab.c"
     break;
 
   case 111: /* identifier_rest_: %empty  */
-#line 404 "P1.y"
+#line 412 "P1.y"
       {(yyval.val) = "";}
-#line 2053 "P1.tab.c"
+#line 2061 "P1.tab.c"
     break;
 
   case 112: /* identifier_rest: ',' IDENTIFIER  */
-#line 408 "P1.y"
+#line 416 "P1.y"
                    {(yyval.val) = (yyvsp[0].val);}
-#line 2059 "P1.tab.c"
+#line 2067 "P1.tab.c"
     break;
 
 
-#line 2063 "P1.tab.c"
+#line 2071 "P1.tab.c"
 
       default: break;
     }
@@ -2252,7 +2260,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 411 "P1.y"
+#line 419 "P1.y"
 
 
 void yyerror(char* s)

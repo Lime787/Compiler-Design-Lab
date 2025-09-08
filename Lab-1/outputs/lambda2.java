@@ -10,7 +10,7 @@ class test {
     public int Less_Equal(int a, int b) {
         Function<Integer,Boolean> f;
         int t;
-        f = ((x) -> (x <= b));
+        f = (((x_unexpected) -> (x_unexpected <= b)));
         if (f.apply(a)) 
         t = 1;
         else 
