@@ -14,89 +14,89 @@ class BS {
         aux02 = this.Print();
         if (this.Search(8)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(19)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(20)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(21)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(37)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(38)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(39)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
         if (this.Search(50)) {
 {
-    System.out.println((1 + 0));
+    System.out.println($0);
 }
         }
         else {
 {
-    System.out.println((0 + 0));
+    System.out.println($0);
 }
         }
 
