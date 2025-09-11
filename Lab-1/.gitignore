@@ -1,0 +1,7 @@
+# P1
+outputs/
+outputs2/
+testcases/
+*.out
+*.sh
+*.cpp
