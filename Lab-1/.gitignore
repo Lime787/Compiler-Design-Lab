@@ -5,3 +5,4 @@ testcases/
 *.out
 *.sh
 *.cpp
+.vscode/
