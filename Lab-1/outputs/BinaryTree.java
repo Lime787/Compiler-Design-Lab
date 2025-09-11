@@ -98,11 +98,11 @@ class Tree {
         boolean ntb;
         int nti;
         ntb = false;
-        nti = num2 + 1;
-        if (num1 <= (num2 - 1)) 
+        nti = (num2 + 1);
+        if ((num1 <= ((num2 - 1)))) 
         ntb = false;
         else 
-        if (!(num1 <= (nti - 1))) 
+        if ((!((num1 <= ((nti - 1)))))) 
         ntb = false;
         else 
         ntb = true;
@@ -123,7 +123,7 @@ class Tree {
         cont = true;
         while (cont) {
             key_aux = current_node.GetKey();
-            if ((v_key <= key_aux) && (v_key != key_aux)) {
+            if ((((v_key <= key_aux)) && ((v_key != key_aux)))) {
                 if (current_node.GetHas_Left()) 
                 current_node = current_node.GetLeft();
                 else {
@@ -164,7 +164,7 @@ class Tree {
         is_root = true;
         while (cont) {
             key_aux = current_node.GetKey();
-            if ((v_key <= key_aux) && (v_key != key_aux)) 
+            if ((((v_key <= key_aux)) && ((v_key != key_aux)))) 
             if (current_node.GetHas_Left()) {
                 parent_node = current_node;
                 current_node = current_node.GetLeft();
@@ -173,7 +173,7 @@ class Tree {
             cont = false;
 
             else 
-            if ((key_aux <= v_key) && (key_aux != v_key)) 
+            if ((((key_aux <= v_key)) && ((key_aux != v_key)))) 
             if (current_node.GetHas_Right()) {
                 parent_node = current_node;
                 current_node = current_node.GetRight();
@@ -183,7 +183,7 @@ class Tree {
 
             else {
                 if (is_root) 
-                if ((!current_node.GetHas_Right()) && (!current_node.GetHas_Left())) 
+                if ((((!current_node.GetHas_Right())) && ((!current_node.GetHas_Left())))) 
                 ntb = true;
                 else 
                 ntb = this.Remove(parent_node,current_node);
@@ -265,14 +265,14 @@ class Tree {
         ifound = 0;
         while (cont) {
             key_aux = current_node.GetKey();
-            if ((v_key <= key_aux) && (v_key != key_aux)) 
+            if ((((v_key <= key_aux)) && ((v_key != key_aux)))) 
             if (current_node.GetHas_Left()) 
             current_node = current_node.GetLeft();
             else 
             cont = false;
 
             else 
-            if ((key_aux <= v_key) && (key_aux != v_key)) 
+            if ((((key_aux <= v_key)) && ((key_aux != v_key)))) 
             if (current_node.GetHas_Right()) 
             current_node = current_node.GetRight();
             else 

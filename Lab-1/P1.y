@@ -37,8 +37,7 @@
         for (int i = 0; i < (int)tokens.size(); i++)
         {
             std::regex pattern(std::string("\\b") + tokens[i] + "\\b");
-            if (!type) expression = std::regex_replace(expression, pattern, std::string("$$") + std::to_string(i));
-            else expression = std::regex_replace(expression, pattern, std::string("(") + std::string("$$") + std::to_string(i) + ")");
+            expression = std::regex_replace(expression, pattern, std::string("$$") + std::to_string(i));
         }
 
         macro_identifiers[type][identifier_m] = {tokens.size(), expression};
@@ -77,20 +76,13 @@
         return res;
     }
 
-    char* modify_lambda(std::string identifier_m, std::string expression_m)
-    {
-        std::regex pattern(std::string("\\b") + identifier_m + "\\b");
-        expression_m = std::regex_replace(expression_m, pattern, identifier_m + "_unexpected");
-        // std::cout << expression_m << '\n';
-        return strdup(expression_m.c_str());
-    }
-
 %}
 
 %union
 {
     char* val;
 }
+%define lr.type ielr
 
 %token CLASS PUBLIC STATIC VOID STRING EXTENDS RETURN INT BOOL IF ELSE WHILE THIS NEW DEFINE MAIN TRUE_ FALSE_
 %token LENGTH PRINT_OUT ARROWOP AND OR NEQ LTEQ FUNCTION IMPORT_FUNCTION IMPORT
@@ -105,10 +97,13 @@
 %type<val> message_send macro_expression expression_list expression_rest_ expression_rest primary_expression array_alloc_expression
 %type<val> allocation_expression not_expression bracket_expression identifier_list_ identifier_list identifier_rest_ identifier_rest
 
-%right '!'
-%right AND OR LTEQ NEQ '[' '.'
+
 %left '+' '-'
 %left '*' '/'
+%nonassoc lambda_dummy
+%right AND OR LTEQ NEQ '[' '.'
+%right '!'
+%nonassoc '('
 %nonassoc IF
 %nonassoc ELSE
 %nonassoc close_paren
@@ -175,7 +170,9 @@ class_extends_declaration:
     ;
 
 var_declaration:
-    type IDENTIFIER ';' {$$ = join_strings("", required_tabs(count_tabs), $1, " ", $2, ";\n");}
+    type IDENTIFIER ';' {
+        $$ = join_strings("", required_tabs(count_tabs), $1, " ", $2, ";\n");
+    }
     ;
 
 method_declaration:
@@ -272,32 +269,33 @@ expression_list_:
     ;
 
 expression :
-    or_expression {$$ = $1;}
-    | and_expression {$$ = $1;}
-    | compare_expression {$$ = $1;}
-    | neq_expression {$$ = $1;}
-    | add_expression {$$ = $1;}
-    | minus_expression {$$ = $1;}
-    | times_expression {$$ = $1;}
-    | div_expression {$$ = $1;}
+    or_expression {$$ = join_strings("", "(", $1, ")");}
+    | and_expression {$$ = join_strings("", "(", $1, ")");}
+    | compare_expression {$$ = join_strings("", "(", $1, ")");}
+    | neq_expression {$$ = join_strings("", "(", $1, ")");}
+    | add_expression {$$ = join_strings("", "(", $1, ")");}
+    | minus_expression {$$ = join_strings("", "(", $1, ")");}
+    | times_expression {$$ = join_strings("", "(", $1, ")");}
+    | div_expression {$$ = join_strings("", "(", $1, ")");}
     | array_lookup {$$ = $1;}
     | array_length {$$ = $1;}
     | message_send {$$ = $1;}
     | macro_expression {$$ = $1;}
-    | lambda_expression {$$ = $1;}
-    | primary_expression %prec '!' {$$ = $1;}
+    | lambda_expression {$$ = join_strings("", "(", $1, ")");}
+    | not_expression %prec '!' {$$ = join_strings("", "(", $1, ")");} 
+    | primary_expression {$$ = $1;}
     ;
 
 lambda_expression:
-    '(' IDENTIFIER ')' ARROWOP expression  {$$ = join_strings("", "((", $2, "_unexpected",") -> ", modify_lambda($2, $5), ")");}
+    '(' IDENTIFIER ')' ARROWOP expression  %prec lambda_dummy {$$ = join_strings("", "(", $2, ") -> ", $5);} 
     ;
 
 and_expression:
-    primary_expression AND primary_expression   {$$ = join_strings(" ", $1, "&&", $3);}
+    expression AND expression   {$$ = join_strings(" ", $1, "&&", $3);}
     ;
 
 or_expression:
-    primary_expression OR primary_expression {$$ = join_strings(" ", $1, "||", $3);}
+    expression OR expression {$$ = join_strings(" ", $1, "||", $3);}
     ;
 
 compare_expression:
@@ -305,7 +303,7 @@ compare_expression:
     ;
 
 neq_expression:
-    primary_expression NEQ primary_expression {$$ = join_strings(" ", $1, "!=", $3);}
+    expression NEQ expression {$$ = join_strings(" ", $1, "!=", $3);}
     ;
 
 add_expression:
@@ -362,7 +360,6 @@ primary_expression:
     | uminus_expression {$$ = $1;}
     | array_alloc_expression {$$ = $1;}
     | allocation_expression {$$ = $1;}
-    | not_expression {$$ = $1;}
     | bracket_expression {$$ = $1;}
     ;
 

@@ -23,9 +23,9 @@ class LS {
     public int Print() {
         int j;
         j = 1;
-        while (j <= (size - 1)) {
+        while ((j <= ((size - 1)))) {
             System.out.println(number[j]);
-            j = j + 1;
+            j = (j + 1);
         }
 
         return 0;
@@ -41,13 +41,13 @@ class LS {
         j = 1;
         ls01 = false;
         ifound = 0;
-        while (j <= (size - 1)) {
+        while ((j <= ((size - 1)))) {
             aux01 = number[j];
-            aux02 = num + 1;
-            if ((aux01 <= num) && (aux01 != num)) 
+            aux02 = (num + 1);
+            if ((((aux01 <= num)) && ((aux01 != num)))) 
             nt = 0;
             else 
-            if (!(aux01 <= (aux02 - 1))) 
+            if ((!((aux01 <= ((aux02 - 1)))))) 
             nt = 0;
             else {
                 ls01 = true;
@@ -56,7 +56,7 @@ class LS {
             }
 
 
-            j = j + 1;
+            j = (j + 1);
         }
 
         return ifound;
@@ -70,13 +70,13 @@ class LS {
         size = sz;
         number = new int[sz];
         j = 1;
-        k = size + 1;
-        while (j <= (size - 1)) {
-            aux01 = 2 * j;
-            aux02 = k - 3;
-            number[j] = aux01 + aux02;
-            j = j + 1;
-            k = k - 1;
+        k = (size + 1);
+        while ((j <= ((size - 1)))) {
+            aux01 = (2 * j);
+            aux02 = (k - 3);
+            number[j] = (aux01 + aux02);
+            j = (j + 1);
+            k = (k - 1);
         }
 
         return 0;

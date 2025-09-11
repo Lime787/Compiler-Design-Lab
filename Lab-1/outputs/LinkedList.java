@@ -34,15 +34,15 @@ class Element {
         int nt;
         ret_val = true;
         aux01 = other.GetAge();
-        if (!this.Compare(aux01,Age)) 
+        if ((!this.Compare(aux01,Age))) 
         ret_val = false;
         else {
             aux02 = other.GetSalary();
-            if (!this.Compare(aux02,Salary)) 
+            if ((!this.Compare(aux02,Salary))) 
             ret_val = false;
             else 
             if (Married) 
-            if (!other.GetMarried()) 
+            if ((!other.GetMarried())) 
             ret_val = false;
             else 
             nt = 0;
@@ -64,11 +64,11 @@ class Element {
         boolean retval;
         int aux02;
         retval = false;
-        aux02 = num2 + 1;
-        if ((num1 <= num2) && (num1 != num2)) 
+        aux02 = (num2 + 1);
+        if ((((num1 <= num2)) && ((num1 != num2)))) 
         retval = false;
         else 
-        if (!(num1 <= (aux02 - 1))) 
+        if ((!((num1 <= ((aux02 - 1)))))) 
         retval = false;
         else 
         retval = true;
@@ -122,28 +122,28 @@ class List {
         int nt;
         my_head = this;
         ret_val = false;
-        aux04 = 0 - 1;
+        aux04 = (0 - 1);
         aux01 = this;
         prev = this;
         var_end = end;
         var_elem = elem;
-        while ((!var_end) && (!ret_val)) {
+        while ((((!var_end)) && ((!ret_val)))) {
             if (e.Equal(var_elem)) {
                 ret_val = true;
-                if ((aux04 <= 0) && (aux04 != 0)) {
+                if ((((aux04 <= 0)) && ((aux04 != 0)))) {
                     my_head = aux01.GetNext();
                 }
                 else {
-                    System.out.println(0 - 555);
+                    System.out.println((0 - 555));
                     aux05 = prev.SetNext(aux01.GetNext());
-                    System.out.println(0 - 555);
+                    System.out.println((0 - 555));
                 }
 
             }
             else 
             nt = 0;
 
-            if (!ret_val) {
+            if ((!ret_val)) {
                 prev = aux01;
                 aux01 = aux01.GetNext();
                 var_end = aux01.GetEnd();
@@ -168,7 +168,7 @@ class List {
         aux01 = this;
         var_end = end;
         var_elem = elem;
-        while (!var_end) {
+        while ((!var_end)) {
             if (e.Equal(var_elem)) {
                 int_ret_val = 1;
             }
@@ -202,7 +202,7 @@ class List {
         aux01 = this;
         var_end = end;
         var_elem = elem;
-        while (!var_end) {
+        while ((!var_end)) {
             System.out.println(var_elem.GetAge());
             aux01 = aux01.GetNext();
             var_end = aux01.GetEnd();

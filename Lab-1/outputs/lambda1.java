@@ -9,7 +9,7 @@ class Main {
 class test {
     public int A(int x) {
         Function<Integer,Integer> inc;
-        inc = ((x_unexpected) -> x_unexpected + 1);
+        inc = (x) -> (x + 1);
         return inc.apply(x);
     }
 

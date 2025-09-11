@@ -27,16 +27,16 @@ class BBS {
         int aux07;
         int j;
         int t;
-        i = size - 1;
-        aux02 = 0 - 1;
-        while (aux02 <= (i - 1)) {
+        i = (size - 1);
+        aux02 = (0 - 1);
+        while ((aux02 <= ((i - 1)))) {
             j = 1;
-            while (j <= i) {
-                aux07 = j - 1;
+            while ((j <= i)) {
+                aux07 = (j - 1);
                 aux04 = number[aux07];
                 aux05 = number[j];
-                if (aux05 <= (aux04 - 1)) {
-                    aux06 = j - 1;
+                if ((aux05 <= ((aux04 - 1)))) {
+                    aux06 = (j - 1);
                     t = number[aux06];
                     number[aux06] = number[j];
                     number[j] = t;
@@ -44,10 +44,10 @@ class BBS {
                 else 
                 nt = 0;
 
-                j = j + 1;
+                j = (j + 1);
             }
 
-            i = i - 1;
+            i = (i - 1);
         }
 
         return 0;
@@ -56,9 +56,9 @@ class BBS {
     public int Print() {
         int j;
         j = 0;
-        while (j <= (size - 1)) {
+        while ((j <= ((size - 1)))) {
             System.out.println(number[j]);
-            j = j + 1;
+            j = (j + 1);
         }
 
         return 0;

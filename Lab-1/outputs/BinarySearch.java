@@ -1,6 +1,6 @@
 class BinarySearch {
     public static void main (String[] a) {
-        System.out.println(new BS().Start((20 + 0)));
+        System.out.println(new BS().Start(((20 + 0))));
     }
 }
 
@@ -14,89 +14,89 @@ class BS {
         aux02 = this.Print();
         if (this.Search(8)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(19)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(20)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(21)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(37)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(38)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(39)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
         if (this.Search(50)) {
 {
-    System.out.println($0);
+    System.out.println(((1 + 0)));
 }
         }
         else {
 {
-    System.out.println($0);
+    System.out.println(((0 + 0)));
 }
         }
 
@@ -114,24 +114,24 @@ class BS {
         aux01 = 0;
         bs01 = false;
         right = number.length;
-        right = right - 1;
+        right = (right - 1);
         left = 0;
         var_cont = true;
         while (var_cont) {
-            medium = left + right;
+            medium = (left + right);
             medium = this.Div(medium);
             aux01 = number[medium];
-            if (num <= (aux01 - 1)) 
-            right = medium - 1;
+            if ((num <= ((aux01 - 1)))) 
+            right = (medium - 1);
             else 
-            left = medium + 1;
+            left = (medium + 1);
 
             if (this.Compare(aux01,num)) 
             var_cont = false;
             else 
             var_cont = true;
 
-            if (right <= (left - 1)) 
+            if ((right <= ((left - 1)))) 
             var_cont = false;
             else 
             nt = 0;
@@ -152,10 +152,10 @@ class BS {
         int aux03;
         count01 = 0;
         count02 = 0;
-        aux03 = num - 1;
-        while ((count02 <= aux03) && (count02 != aux03)) {
-            count01 = count01 + 1;
-            count02 = count02 + 2;
+        aux03 = (num - 1);
+        while ((((count02 <= aux03)) && ((count02 != aux03)))) {
+            count01 = (count01 + 1);
+            count02 = (count02 + 2);
         }
 
         return count01;
@@ -165,11 +165,11 @@ class BS {
         boolean retval;
         int aux02;
         retval = false;
-        aux02 = num2 + 1;
-        if (num1 <= (num2 - 1)) 
+        aux02 = (num2 + 1);
+        if ((num1 <= ((num2 - 1)))) 
         retval = false;
         else 
-        if (!(num1 <= (aux02 - 1))) 
+        if ((!((num1 <= ((aux02 - 1)))))) 
         retval = false;
         else 
         retval = true;
@@ -181,12 +181,12 @@ class BS {
     public int Print() {
         int j;
         j = 1;
-        while ((j <= size) && (j != size)) {
+        while ((((j <= size)) && ((j != size)))) {
             System.out.println(number[j]);
-            j = j + 1;
+            j = (j + 1);
         }
 
-        System.out.println((9999 + 0));
+        System.out.println(((9999 + 0)));
         return 0;
     }
 
@@ -198,13 +198,13 @@ class BS {
         size = sz;
         number = new int[sz];
         j = 1;
-        k = size + 1;
-        while (j <= (size - 1)) {
-            aux01 = 2 * j;
-            aux02 = k - 3;
-            number[j] = aux01 + aux02;
-            j = j + 1;
-            k = k - 1;
+        k = (size + 1);
+        while ((j <= ((size - 1)))) {
+            aux01 = (2 * j);
+            aux02 = (k - 3);
+            number[j] = (aux01 + aux02);
+            j = (j + 1);
+            k = (k - 1);
         }
 
         return 0;

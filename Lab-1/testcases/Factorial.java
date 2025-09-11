@@ -9,8 +9,10 @@ class Factorial{
 
 class Fac {
     public int ComputeFac(int num){
-        int num_aux ;
-        num_aux = ! 2 + 3;
+        boolean num_aux ;
+        num_aux = ! true && false;
+        num_aux = !current_node.GetHas_Right() && 
+			    !current_node.GetHas_Left();
         if ((num <= 1)&&(num != 1))
             num_aux = ONE() ;
         else
