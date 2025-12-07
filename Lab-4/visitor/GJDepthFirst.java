@@ -256,8 +256,14 @@ public class GJDepthFirst<R,A> implements GJVisitor<R,A> {
       _ret = n.f0.accept(this, argu);
       if (n.f0.which == 5) {
          Integer val = (Integer) _ret;
-         String exp = String.valueOf(val);
-         _ret = (R) exp;
+         int t1 = next_temp();
+         System.out.println(tab_space + "MOVE TEMP " + t1 + " " + val);
+         _ret = (R) ("TEMP " + t1);
+      } else if (n.f0.which == 6) {
+         String l1 = (String) _ret;
+         int t1 = next_temp();
+         System.out.println(tab_space + "MOVE TEMP " + t1 + " " + l1);
+         _ret = (R) ("TEMP " + t1);
       }
       return _ret;
    }
@@ -353,6 +359,11 @@ public class GJDepthFirst<R,A> implements GJVisitor<R,A> {
       String e1 = (String) n.f1.accept(this, argu);
       String e2 = (String) n.f2.accept(this, argu);
       int t1 = next_temp();
+      if (n.f1.f0.which == 5) {
+         int t2 = next_temp();
+         System.out.println(tab_space + "MOVE TEMP " + t2 + " " + e1);
+         e1 = "TEMP " + t2;
+      }
       System.out.println(tab_space + "MOVE TEMP " + t1 + " " + op + " " + e1 + " " + e2);
       _ret = (R) ("TEMP " + t1);
       return _ret;

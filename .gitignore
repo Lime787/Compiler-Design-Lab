@@ -9,6 +9,7 @@
 */final_tc_eoutputs
 *.out
 *.sh
+!/*.sh
 *.cpp
 *.class
 *.jar
