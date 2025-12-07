@@ -2,7 +2,14 @@
 */outputs/
 */outputs2/
 */testcases/
+*/outputs_final/
+*/outputs_java/
+*/testcases_java/
+*/final_tcs
+*/final_tc_eoutputs
 *.out
 *.sh
 *.cpp
+*.class
+*.jar
 .vscode/
