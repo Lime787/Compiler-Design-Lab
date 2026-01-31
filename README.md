@@ -54,4 +54,4 @@ Compiles and runs the code in each file and outputs the results into outputs fol
 ```
 ## Other Comments
 1. Bash files were generated with the help of llms
-
+2. The **outputs** folder contains corresponding MIPS Assembly code to each MacroJava file in the **testcases** folder
