@@ -41,7 +41,7 @@ Detailed descriptions of these Languages can be found at the same link shared ab
 ## Build and Run
 1. Compile the code (expects flex, bison, javac, java, g++ to be present in the system)
 ```bash
-./myCompiler.sh inputProgram.java
+./myCompiler.sh inputProgram.java [output.s]
 ```
 2. running the MIPS Assembly code (expects Spim or qtspim to be installed in the system)
 ```bash
